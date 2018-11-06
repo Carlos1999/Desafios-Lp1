@@ -8,6 +8,6 @@ int main (int argc , char const * argv []){
 
 	Palindroma *p = new Palindroma();
 
-	cout<<p->verificarFrase("Amo Oma. Se Roma me tem amores, amo Oma!")<<endl;
+	p->verificarFrase("Socorram-me, SUBI NO ÔNIBUS EM MARROCOS");
 return 0;
 }
