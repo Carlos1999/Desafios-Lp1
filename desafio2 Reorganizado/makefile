@@ -13,10 +13,10 @@ all:mkdirs $(PROG)
 $(PROG): $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJS)
 
-$(OBJ)/rpn.o: $(INC)/pilha.h $(INC)/rpn.h   $(SRC)/rpn.cpp
+$(OBJ)/rpn.o: $(INC)/rpn.h   $(SRC)/rpn.cpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/rpn.cpp -o $(OBJ)/rpn.o
 
-$(OBJ)/main.o: $(INC)/pilha.h $(INC)/rpn.h   $(SRC)/main.cpp
+$(OBJ)/main.o: $(INC)/rpn.h   $(SRC)/main.cpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $(OBJ)/main.o
 
 mkdirs: 

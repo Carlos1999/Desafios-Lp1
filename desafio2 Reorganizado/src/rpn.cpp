@@ -1,8 +1,9 @@
-#include "Pilha.h"
 #include <iostream>
 #include <cmath>
 #include "rpn.h"
 #include <string>
+#include <stack>
+using std::stack;
 using namespace std;
 Rpn::Rpn(){	
 }
@@ -10,7 +11,7 @@ Rpn::~Rpn(){
 }	
 
 void Rpn::executar(){
-	Pilha<int> pilha(50);
+	stack<int> pilha;
 	string notacao;
 	string notacaoFixa = " ";
 	cout << "Insira a expressão no formado Notação Polonesa Inversa: ";
@@ -33,12 +34,14 @@ void Rpn::executar(){
 			
 			// ***** realizar alguma operação ******
 
-			int a = pilha.desempilhar();
-			int b = pilha.desempilhar();
+			int a = pilha.top();
+			pilha.pop();
+			int b = pilha.top();
+			pilha.pop();
 
 			// Os operandos tem que estar invertidos ao  desempilhar. 
 			// Assim evita algo do tipo: 10/5 -> 10 5 / ** empilha 10 **> pilha[10] **empilha 5**> pilha[10, 5] ** Desempilhar**> 5 / 10 	
-			pilha.empilhar(realizaOperacao(aux[0], b, a));
+			pilha.push(realizaOperacao(aux[0], b, a));
 
 			if (notacaoFixa.compare(" ") != 0) {
 
@@ -57,14 +60,14 @@ void Rpn::executar(){
 		} else { // Se a leitura do while foi um número
 
 			// Pega o valor em string, converte para inteiro com o stoi() e empilha
-			pilha.empilhar(stoi(aux));
+			pilha.push(stoi(aux));
 		
 		}
 
 	}
 
-	cout << "\nResultado: " << pilha.desempilhar() << " Infixa: " << notacaoFixa << endl;
-
+	cout << "\nResultado: " << pilha.top() << " Infixa: " << notacaoFixa << endl;
+	pilha.pop();
 }
 
 int Rpn::realizaOperacao(char operacao, int valor1, int valor2) {
