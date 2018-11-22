@@ -8,6 +8,6 @@ int main (int argc , char const * argv []){
 
 	Palindroma *p = new Palindroma();
 
-	p->verificarFrase("Socorram-me, SUBI NO ÔNIBUS EM MARROCOS");
+	p->verificarFrase("aabaa");
 return 0;
 }

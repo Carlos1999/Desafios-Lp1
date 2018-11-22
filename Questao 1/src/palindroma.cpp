@@ -17,29 +17,37 @@ bool Palindroma::verificarFrase(string frase_){
 	string letra_frase;
 	string frase_auxiliar;
 
-	for (int i = 0; i < tamanhoFrase; i++){
+//  For para saber a quantidade de letras e para criar a frase auxiliar
+	for (int i=0; i<tamanhoFrase; i++){
 		letra_frase= frase_[i];
 		letra_frase = transformaMaiusculo(letra_frase);
 		if(letra_frase!=""){
 			frase_auxiliar += letra_frase[0];
-			p->push(letra_frase);
 		}else{
 			tamanhoFraseFinal--;
 		}
 	}
-
+// 	For para empilhar	
+	for (int i = 0; i < tamanhoFraseFinal - tamanhoFraseFinal/2; i++){
+		letra_frase= frase_auxiliar[i];
+			p->push(letra_frase);
+		cout<<"empilhou"<<endl;
+	}
+// For para saber se está vazio
 	if(p->empty()){
 		cout<<"Frase fazia"<<endl;
 		return false;
 	}
+
+// For para saber se é palindroma
 	cout<<"comparando: Letra da frase / Letra da pilha"<<endl;
-	for (int i = 0; i <tamanhoFraseFinal; i++){
+	for (int i =  tamanhoFraseFinal/2; i <tamanhoFraseFinal; i++){
 		letra_frase= frase_auxiliar[i];
 
 			cout<<"Letra frase = "<<letra_frase <<"|"<<"TOP = "<<  p->top()<<"|"<<endl;
 		
 		if(letra_frase != p->top()){
-		cout<<"Não um palíndromo"<<endl;
+		cout<<"Não é um palíndromo"<<endl;
 			return false;
 		}
 		p->pop();
